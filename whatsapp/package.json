@@ -13,6 +13,7 @@
     "axios": "^1.7.3",
     "cors": "^2.8.5",
     "express": "^4.19.2",
+    "pm2": "^5.4.2",
     "puppeteer": "^22.15.0",
     "puppeteer-core": "^22.15.0",
     "pusher": "^5.2.0",
