@@ -57,6 +57,8 @@ class TransaksiController extends Controller
 
     public function proses(Request $request, Reservasi $reservasi)
     {
+        $data = $request->all();
+        $data['penerbangan'] = json_decode($data['penerbangan']);
         // $validator = Validator::make($request->all(), [
         //     'penerbangan.kode' => ['required'],
         //     'penerbangan.waktu_berangkat' => ['required'],
@@ -75,9 +77,9 @@ class TransaksiController extends Controller
 
         if ($file) {
             $penerbangan = $reservasi->penerbangan()->update([
-                'kode' => $request->penerbangan['kode'],
-                'waktu_berangkat' => $request->penerbangan['waktu_berangkat'],
-                'waktu_tiba' => $request->penerbangan['waktu_tiba']
+                'kode' => $data['penerbangan']['kode'],
+                'waktu_berangkat' => $data['penerbangan']['waktu_berangkat'],
+                'waktu_tiba' => $data['penerbangan']['waktu_tiba']
             ]);
 
             if ($reservasi->update(['harga' => $request->harga, 'status' => 'selesai']) && $penerbangan) {
