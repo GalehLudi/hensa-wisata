@@ -37,7 +37,7 @@ public class LaporanAdapter extends RecyclerView.Adapter<LaporanAdapter.ViewHold
 
         String status = "-";
         if (transaksi.getHarga() != null) {
-            if (transaksi.getHarga().doubleValue() - transaksi.getPembayaran().stream().mapToDouble(p -> p.getJumlah().doubleValue()).sum() == 0)
+            if (!transaksi.getPembayaran().isEmpty() && transaksi.getHarga().doubleValue() - transaksi.getPembayaran().stream().mapToDouble(p -> p.getJumlah().doubleValue()).sum() == 0)
                 status = "Lunas";
             else
                 status = "Belum Lunas";

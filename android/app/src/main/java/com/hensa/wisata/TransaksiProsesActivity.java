@@ -188,7 +188,7 @@ public class TransaksiProsesActivity extends AppCompatActivity {
             penerbangan.setWaktuBerangkat(waktuBerangkatEdit.getText().toString());
             penerbangan.setWaktuTiba(waktuTibaEdit.getText().toString());
             transaksi.setPenerbangan(penerbangan);
-            transaksi.setHarga((Number) hargaEdit.getText());
+            transaksi.setHarga(Long.parseLong(hargaEdit.getText().toString()));
 
             Map<String, RequestBody> body = new HashMap<>();
             MultipartBody.Part tiket = null;

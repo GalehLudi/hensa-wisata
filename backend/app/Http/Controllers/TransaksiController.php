@@ -58,9 +58,9 @@ class TransaksiController extends Controller
     public function proses(Request $request, Reservasi $reservasi)
     {
         $validator = Validator::make($request->all(), [
-            'kode' => ['required'],
-            'waktu_berangkat' => ['required'],
-            'waktu_tiba' => ['required'],
+            'penerbangan.kode' => ['required'],
+            'penerbangan.waktu_berangkat' => ['required'],
+            'penerbangan.waktu_tiba' => ['required'],
             'harga' => ['required'],
             'tiket' => ['required', Rule::file()->types('application/pdf')],
         ]);
@@ -75,9 +75,9 @@ class TransaksiController extends Controller
 
         if ($file) {
             $penerbangan = $reservasi->penerbangan()->update([
-                'kode' => $request->kode,
-                'waktu_berangkat' => $request->waktu_berangkat,
-                'waktu_tiba' => $request->waktu_tiba
+                'kode' => $request->penerbangan['kode'],
+                'waktu_berangkat' => $request->penerbangan['waktu_berangkat'],
+                'waktu_tiba' => $request->penerbangan['waktu_tiba']
             ]);
 
             if ($reservasi->update(['harga' => $request->harga, 'status' => 'selesai']) && $penerbangan) {
