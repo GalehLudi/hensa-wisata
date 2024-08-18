@@ -73,7 +73,7 @@ class TransaksiController extends Controller
         //         'error' => Arr::map($validator->errors()->toArray(), fn($error) => $error[0])
         //     ]);
 
-        $file = $request->file('tiket')->storeAs('tiket', $reservasi->kode . '-' . $request->kode . '.pdf', 'public');
+        $file = $request->file('tiket')->storeAs('tiket', $reservasi->kode . '-' . $data['penerbangan']['kode'] . '.pdf', 'public');
 
         if ($file) {
             $penerbangan = $reservasi->penerbangan()->update([
