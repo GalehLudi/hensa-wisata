@@ -70,7 +70,7 @@ const initWebhook = async (message, type = null) => {
       data['isMyContact'] = user.isMyContact
     }
 
-    await axios.post('http://127.0.0.1:8000/api/whatsapp/webhook', data).catch((error) => {
+    await axios.post('http://103.235.73.144:8080//api/whatsapp/webhook', data).catch((error) => {
       console.error(error)
     })
   }
