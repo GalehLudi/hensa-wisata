@@ -1,0 +1,44 @@
+[versions]
+agp = "8.5.0-beta02"
+androidpdfviewer = "3.1.0-beta.1"
+androidSpinkit = "1.4.0"
+converterGson = "2.1.0"
+glide = "4.14.2"
+gson = "2.11.0"
+javafaker = "1.0.2"
+junit = "4.13.2"
+junitVersion = "1.1.5"
+espressoCore = "3.5.1"
+appcompat = "1.7.0"
+loaderspack = "1.2.3"
+material = "1.12.0"
+activity = "1.9.0"
+constraintlayout = "2.1.4"
+permissions = "3.8"
+permissionx = "1.8.0"
+playServicesLocation = "21.3.0"
+retrofit = "1.0.0"
+
+[libraries]
+android-spinkit = { module = "com.github.ybq:Android-SpinKit", version.ref = "androidSpinkit" }
+androidpdfviewer = { module = "com.github.DImuthuUpe:AndroidPdfViewer", version.ref = "androidpdfviewer" }
+converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+javafaker = { module = "com.github.javafaker:javafaker", version.ref = "javafaker" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+loaderspack = { module = "com.agrawalsuneet.androidlibs:loaderspack", version.ref = "loaderspack" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+permissions = { module = "com.nabinbhandari.android:permissions", version.ref = "permissions" }
+permissionx = { module = "com.guolindev.permissionx:permissionx", version.ref = "permissionx" }
+play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version = "2.11.0" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+

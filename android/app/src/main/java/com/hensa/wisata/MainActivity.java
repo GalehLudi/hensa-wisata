@@ -1,0 +1,62 @@
+package com.hensa.wisata;
+
+import android.content.Intent;
+import android.os.Bundle;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import com.hensa.wisata.libs.APIClient;
+import com.hensa.wisata.libs.SessionManager;
+import com.hensa.wisata.models.Petugas;
+import com.hensa.wisata.models.ResponseBody;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
+        getSupportActionBar().hide();
+
+        if (new SessionManager(this).getToken() == null) {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+        Call<ResponseBody<Petugas>> call = new APIClient(this).getService().user();
+        call.enqueue(new Callback<ResponseBody<Petugas>>() {
+            @Override
+            public void onResponse(Call<ResponseBody<Petugas>> call, Response<ResponseBody<Petugas>> response) {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                if (response.isSuccessful()) {
+                    if (response.body().getStatus().equals("sukses")) {
+                        intent = new Intent(MainActivity.this, HomeActivity.class);
+                    }
+                }
+                startActivity(intent);
+                finish();
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody<Petugas>> call, Throwable throwable) {
+                throwable.printStackTrace();
+            }
+        });
+    }
+}
