@@ -74,11 +74,8 @@ class WhatsappGatewayController extends Controller
             'message' => $message
         ];
 
-        $media = [];
         if ($file) {
-            $media['mimetype'] = Storage::mimeType('public/' . $file);
-            $media['data'] = Storage::disk('public')->get($file);
-            $data['media'] = $media;
+            $data['media'] = asset($file);
         }
 
         $response = $this->httpClient->post('message', $data)->json();

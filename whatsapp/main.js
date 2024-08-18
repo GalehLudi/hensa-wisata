@@ -157,7 +157,7 @@ app.post('/message', async (req, res, next) => {
 
   const content = []
   if (media) {
-    content.push(new MessageMedia(media.mimetype, media.data))
+    content.push(await MessageMedia.fromUrl(media))
     content.push({ caption: message })
   } else {
     content.push(message)

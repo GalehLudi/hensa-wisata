@@ -86,7 +86,7 @@ class TransaksiController extends Controller
             if ($reservasi->update(['harga' => $request->harga, 'status' => 'selesai']) && $penerbangan) {
                 Http::baseUrl(route('chat', $reservasi->pelanggan()->first()->hp))->post('', [
                     'pesan' => 'Transaksi telah diproses. Dengan kode tiket: ' . $reservasi->kode . ' dan kode penerbangan: ' . $data['penerbangan']['kode'],
-                    'file' => Str::of($file)->remove('storage/')
+                    'file' => $file
                 ]);
 
                 return response()->json([
