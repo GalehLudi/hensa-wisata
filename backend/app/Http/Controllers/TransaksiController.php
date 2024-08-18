@@ -15,7 +15,7 @@ class TransaksiController extends Controller
     public function index(Request $request)
     {
         $reservasi = new Reservasi();
-        $reservasi = $reservasi->with(['penerbangan']);
+        $reservasi = $reservasi->with(['penerbangan', 'penumpang']);
         if ($request->query('filter')) {
             if ($request->query('filter') == 'pembayaran') {
                 $reservasi = $reservasi->with(['pembayaran'])->where('status', 'proses')->latest()->get();

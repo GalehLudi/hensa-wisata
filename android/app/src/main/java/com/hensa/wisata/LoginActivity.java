@@ -60,9 +60,6 @@ public class LoginActivity extends AppCompatActivity {
             TextInputEditText userInput = findViewById(R.id.user);
             TextInputEditText passwordInput = findViewById(R.id.password);
 
-            userInput.setText("putri@gmail.com");
-            passwordInput.setText("putri123");
-
             Auth auth = new Auth(getBaseContext(), userInput.getText().toString(), passwordInput.getText().toString());
 
             Call<ResponseBody<Void>> call = new APIClient(this).getService().login(auth);
