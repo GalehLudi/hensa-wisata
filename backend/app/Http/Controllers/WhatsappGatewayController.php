@@ -78,9 +78,10 @@ class WhatsappGatewayController extends Controller
         if ($file) {
             $media['mimetype'] = Storage::mimeType('public/' . $file);
             $media['data'] = Storage::disk('public')->get($file);
+            $data['media'] = $media;
         }
 
-        $response = $this->httpClient->post('message', $data, $media)->json();
+        $response = $this->httpClient->post('message', $data)->json();
 
         $chat = Chat::create([
             'user_id' => Auth::id(),
