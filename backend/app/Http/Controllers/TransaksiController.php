@@ -57,19 +57,19 @@ class TransaksiController extends Controller
 
     public function proses(Request $request, Reservasi $reservasi)
     {
-        $validator = Validator::make($request->all(), [
-            'penerbangan.kode' => ['required'],
-            'penerbangan.waktu_berangkat' => ['required'],
-            'penerbangan.waktu_tiba' => ['required'],
-            'harga' => ['required'],
-            'tiket' => ['required', Rule::file()->types('application/pdf')],
-        ]);
+        // $validator = Validator::make($request->all(), [
+        //     'penerbangan.kode' => ['required'],
+        //     'penerbangan.waktu_berangkat' => ['required'],
+        //     'penerbangan.waktu_tiba' => ['required'],
+        //     'harga' => ['required'],
+        //     'tiket' => ['required', Rule::file()->types('application/pdf')],
+        // ]);
 
-        if ($validator->fails())
-            return response()->json([
-                'status' => 'validasi gagal',
-                'error' => Arr::map($validator->errors()->toArray(), fn($error) => $error[0])
-            ]);
+        // if ($validator->fails())
+        //     return response()->json([
+        //         'status' => 'validasi gagal',
+        //         'error' => Arr::map($validator->errors()->toArray(), fn($error) => $error[0])
+        //     ]);
 
         $file = $request->file('tiket')->storeAs('tiket', $reservasi->kode . '-' . $request->kode . '.pdf', 'public');
 
