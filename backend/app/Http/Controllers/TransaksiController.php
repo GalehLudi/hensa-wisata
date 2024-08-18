@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Reservasi;
 use App\Models\Pembayaran;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Http;
@@ -84,7 +85,8 @@ class TransaksiController extends Controller
 
             if ($reservasi->update(['harga' => $request->harga, 'status' => 'selesai']) && $penerbangan) {
                 Http::baseUrl(route('chat', $reservasi->pelanggan()->first()->hp))->post('', [
-                    'pesan' => 'Transaksi telah diproses. Dengan kode ti',
+                    'pesan' => 'Transaksi telah diproses. Dengan kode tiket: ' . $reservasi->kode . ' dan kode penerbangan: ' . $data['penerbangan']['kode'],
+                    'file' => Str::of($file)->remove('storage/')
                 ]);
 
                 return response()->json([

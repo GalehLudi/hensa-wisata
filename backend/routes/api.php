@@ -46,7 +46,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('{hp}', 'show');
     });
 
-    Route::post('/chat/{tujuan}', [WhatsappGatewayController::class, 'sendMessage'])->name('chat');
 
     Route::controller(TransaksiController::class)->prefix('transaksi')->group(function () {
         Route::get('', 'index');
@@ -58,5 +57,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/laporan', LaporanController::class);
 });
+Route::post('/chat/{tujuan}', [WhatsappGatewayController::class, 'sendMessage'])->name('chat');
 
 Route::post('/whatsapp/webhook', [WhatsappGatewayController::class, 'webhook']);
